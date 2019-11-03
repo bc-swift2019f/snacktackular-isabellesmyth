@@ -33,6 +33,14 @@ class SpotDetailViewController: UIViewController {
         
     }
     
+    func leaveViewController() {
+        let isPresentingInAddMode = presentingViewController is UINavigationController
+               if isPresentingInAddMode {
+                   dismiss(animated: true, completion: nil)
+               } else {
+                   navigationController?.popViewController(animated: true)
+               }
+    }
     @IBAction func photoButtonPressed(_ sender: UIButton) {
     }
     
@@ -40,6 +48,14 @@ class SpotDetailViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        spot.saveData { success in
+            if success {
+                self.leaveViewController()
+            } else {
+                print("****ERROR: couldn't leave this viewcontroller because data wasn't saved")
+            }
+            
+        }
     }
     
     
@@ -51,12 +67,7 @@ class SpotDetailViewController: UIViewController {
     
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        let isPresentingInAddMode = presentingViewController is UINavigationController
-        if isPresentingInAddMode {
-            dismiss(animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
+        leaveViewController()
     }
 }
 
@@ -93,4 +104,5 @@ extension SpotDetailViewController: GMSAutocompleteViewControllerDelegate {
     }
     
 }
+
 

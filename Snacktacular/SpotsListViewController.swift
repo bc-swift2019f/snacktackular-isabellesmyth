@@ -131,7 +131,7 @@ extension SpotsListViewController: FUIAuthDelegate {
         let logoFrame = CGRect(x: self.view.frame.origin.x + marginInsets, y: imageY, width: self.view.frame.width - (marginInsets * 2), height: imageHeight)
         
         let logoImageView = UIImageView(frame: logoFrame)
-        logoImageView.image = UIImage(named: "logo")
+        logoImageView.image = UIImage(named:"logo")
         logoImageView.contentMode = .scaleAspectFit
         loginViewController.view.addSubview(logoImageView)
         return loginViewController
