@@ -120,7 +120,7 @@ extension SpotsListViewController: FUIAuthDelegate {
         }
         
     }
-    
+
     func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
         let loginViewController = FUIAuthPickerViewController(authUI: authUI)
         loginViewController.view.backgroundColor = UIColor.white
