@@ -23,7 +23,7 @@ class SpotsListViewController: UIViewController {
         
         authUI = FUIAuth.defaultAuthUI()
         // You need to adopt a FUIAuthDelegate protocol to receive callback
-        authUI.delegate? = self
+        authUI?.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = true
@@ -33,29 +33,34 @@ class SpotsListViewController: UIViewController {
         spots.spotsArray.append(Spot(name: "Shake Shack", address: "Chestnut Hill", coordinate: CLLocationCoordinate2D(), averageRating: 0.0, numberOfReviews: 0, postingUserID: "", documentID: ""))
         
         spots.spotsArray.append(Spot(name: "Pinos", address: "Cleveland Circle", coordinate: CLLocationCoordinate2D(), averageRating: 0.0, numberOfReviews: 0, postingUserID: "", documentID: ""))
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
         spots.loadData {
             self.tableView.reloadData()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("******view did appear happening***")
         signIn()
     }
     
     func signIn() {
         let providers: [FUIAuthProvider] = [
-          FUIGoogleAuth(),
+            FUIGoogleAuth()
         ]
         if authUI.auth?.currentUser == nil {
+            print("No current user")
             self.authUI?.providers = providers
             present(authUI.authViewController(), animated: true, completion: nil)
         } else {
+            print("Current user")
             tableView.isHidden = false
         }
-      
+        
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -109,23 +114,26 @@ extension SpotsListViewController: UITableViewDelegate, UITableViewDataSource {
 extension SpotsListViewController: FUIAuthDelegate {
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-      let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
-      if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-        return true
-      }
-      // other URL handling goes here.
-      return false
+        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-      // handle user and error as necessary
+        // handle user and error as necessary
+        print("*****authorization happening*****")
         if let user = user {
             tableView.isHidden = false
             print("********we signed in with the user \(user.email ?? "unknown email")")
+        } else {
+            signIn()
         }
         
     }
-
+    
     func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
         let loginViewController = FUIAuthPickerViewController(authUI: authUI)
         loginViewController.view.backgroundColor = UIColor.white
