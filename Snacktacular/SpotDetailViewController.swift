@@ -19,17 +19,37 @@ class SpotDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    
     var spot: Spot!
     let regionDistance: CLLocationDistance = 750 //meters
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //hide keyboard if we tap out of field
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
         //mapView.delegate = self
-        if spot == nil {
+        if spot == nil { //we are adding a new record field
             print("Spot was nil")
             spot = Spot()
             getLocation()
+            
+            nameField.addBorder(width: 0.5, radius: 5.0, color: .black)
+            addressField.addBorder(width: 0.5, radius: 5.0, color: .black)
+            
+        } else {
+            nameField.isEnabled = false
+            addressField.isEnabled = false
+            nameField.backgroundColor = UIColor.clear
+            addressField.backgroundColor = UIColor.white
+            saveBarButton.title = ""
+            cancelBarButton.title = ""
+            navigationController?.setToolbarHidden(true, animated: true)
             
         }
         nameField.text = spot.name
@@ -41,6 +61,26 @@ class SpotDetailViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         updateUserInterface()
     }
+    
+    @IBAction func textFieldEditingChanged(_ sender: UITextField) {
+        saveBarButton.isEnabled = !(nameField.text == "")
+    }
+    
+    @IBAction func textFieldReturnPressed(_ sender: UITextField) {
+        sender.resignFirstResponder()
+        spot.name = nameField.text!
+        spot.address = addressField.text!
+        updateUserInterface()
+        
+        //primary action triggered is when done button is pressed
+    }
+    func showAlert(title: String, message: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController,animated: true, completion: nil)
+    }
+    
     
     func updateUserInterface() {
         nameField.text = spot.name
