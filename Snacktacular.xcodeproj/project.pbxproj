@@ -19,9 +19,12 @@
 		3E8390EA206597F600512DEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8390E8206597F600512DEA /* LaunchScreen.storyboard */; };
 		740843FC2378DEB800CFCE2E /* ReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740843FB2378DEB800CFCE2E /* ReviewTableViewController.swift */; };
 		740843FE2378EA1100CFCE2E /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740843FD2378EA1100CFCE2E /* Review.swift */; };
+		740844002378F62E00CFCE2E /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740843FF2378F62E00CFCE2E /* Reviews.swift */; };
 		740FF374237882A600FC1DED /* Double+roundTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740FF373237882A600FC1DED /* Double+roundTo.swift */; };
 		740FF3762378875200FC1DED /* UIView+addBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740FF3752378875200FC1DED /* UIView+addBorder.swift */; };
 		7480ED4C236F47100068313A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7480ED4B236F47100068313A /* GoogleService-Info.plist */; };
+		74DA2E302379B5A700F5BCD0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DA2E2F2379B5A700F5BCD0 /* Photo.swift */; };
+		74DA2E322379B64500F5BCD0 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DA2E312379B64500F5BCD0 /* Photos.swift */; };
 		74ED81CE236F36050091CD17 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED81CD236F36050091CD17 /* Spot.swift */; };
 		74ED81D0236F36FC0091CD17 /* Spots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74ED81CF236F36FC0091CD17 /* Spots.swift */; };
 /* End PBXBuildFile section */
@@ -43,9 +46,12 @@
 		700B550F405DA2D02BEA772B /* Pods-Snacktacular.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snacktacular.release.xcconfig"; path = "Target Support Files/Pods-Snacktacular/Pods-Snacktacular.release.xcconfig"; sourceTree = "<group>"; };
 		740843FB2378DEB800CFCE2E /* ReviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewController.swift; sourceTree = "<group>"; };
 		740843FD2378EA1100CFCE2E /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		740843FF2378F62E00CFCE2E /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		740FF373237882A600FC1DED /* Double+roundTo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+roundTo.swift"; sourceTree = "<group>"; };
 		740FF3752378875200FC1DED /* UIView+addBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addBorder.swift"; sourceTree = "<group>"; };
 		7480ED4B236F47100068313A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		74DA2E2F2379B5A700F5BCD0 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		74DA2E312379B64500F5BCD0 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		74ED81CD236F36050091CD17 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		74ED81CF236F36FC0091CD17 /* Spots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spots.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +102,9 @@
 				7480ED4B236F47100068313A /* GoogleService-Info.plist */,
 				3E8390E3206597F600512DEA /* Main.storyboard */,
 				740843FD2378EA1100CFCE2E /* Review.swift */,
+				740843FF2378F62E00CFCE2E /* Reviews.swift */,
+				74DA2E2F2379B5A700F5BCD0 /* Photo.swift */,
+				74DA2E312379B64500F5BCD0 /* Photos.swift */,
 				740843FB2378DEB800CFCE2E /* ReviewTableViewController.swift */,
 				3E8390E6206597F600512DEA /* Assets.xcassets */,
 				3E8390E8206597F600512DEA /* LaunchScreen.storyboard */,
@@ -298,7 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74DA2E302379B5A700F5BCD0 /* Photo.swift in Sources */,
+				740844002378F62E00CFCE2E /* Reviews.swift in Sources */,
 				3E8390E2206597F600512DEA /* SpotsListViewController.swift in Sources */,
+				74DA2E322379B64500F5BCD0 /* Photos.swift in Sources */,
 				3E0F96102065AC1A00AE450D /* SpotPhotosCollectionViewCell.swift in Sources */,
 				3E0F960C2065A17500AE450D /* SpotDetailViewController.swift in Sources */,
 				3E0F960E2065AB6400AE450D /* SpotReviewsTableViewCell.swift in Sources */,
