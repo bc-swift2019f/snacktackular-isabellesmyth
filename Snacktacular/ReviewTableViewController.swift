@@ -9,7 +9,16 @@
 import UIKit
 
 class ReviewTableViewController: UITableViewController {
-
+    var rating = 0 {
+        didSet{
+            for starButton in starButtonCollection {
+                let image = UIImage(named: (starButton.tag < rating ? "star-filled": "star-empty"))
+                starButton.setImage(image, for: .normal)
+                
+            }
+            print(">>>>>new rating \(rating)")
+        }
+    }
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
 
@@ -31,6 +40,15 @@ class ReviewTableViewController: UITableViewController {
         self.view.addGestureRecognizer(tap)
 
     }
+    @IBOutlet var starButtonCollection: [UIButton]!
+    
+    
+    @IBAction func starButtonPressed(_ sender: UIButton) {
+        rating = sender.tag + 1
+        
+    }
+    
+    
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
     }
     @IBAction func returnTitleDonePressed(_ sender: UITextField) {
