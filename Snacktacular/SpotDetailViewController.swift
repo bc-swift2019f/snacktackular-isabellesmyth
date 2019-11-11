@@ -18,11 +18,11 @@ class SpotDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
-    
+   
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
     @IBOutlet weak var cancelBarButton: UIBarButtonItem!
-    
+    var reviews: [Review] = []
     var spot: Spot!
     let regionDistance: CLLocationDistance = 750 //meters
     var locationManager: CLLocationManager!
@@ -62,6 +62,27 @@ class SpotDetailViewController: UIViewController {
         updateUserInterface()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        spot.name = nameField.text!
+        spot.address = addressField.text!
+        switch segue.identifier ?? "" {
+        case "AddReview":
+            let navigationController = segue.destination as! UINavigationController
+            let destination = navigationController.viewControllers.first as! ReviewTableViewController
+            destination.spot = spot
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                tableView.deselectRow(at: selectedIndexPath, animated: true)
+            }
+        case "ShowReview":
+            let destination = segue.destination as! ReviewTableViewController
+            destination.spot = spot
+            let selectedIndexPath = tableView.indexPathForSelectedRow!
+            destination.review = reviews[selectedIndexPath.row]
+        default:
+            print("ERROR: DID NOT HAVE SEGUE IN SPOT DETAIL VC")
+        }
+        
+    }
     @IBAction func textFieldEditingChanged(_ sender: UITextField) {
         saveBarButton.isEnabled = !(nameField.text == "")
     }
