@@ -19,9 +19,9 @@ class Reviews {
     }
     
     func loadData(spot: Spot, completed: @escaping () -> ()) {
-        print("LOADING DATA")
+  
         guard spot.documentID != "" else {
-            print("I RETURN")
+          
             return
             
         }
@@ -39,7 +39,6 @@ class Reviews {
             for document in QuerySnapshot!.documents {
                 let review = Review(dictionary: document.data())
                 review.documentID = document.documentID
-                print("************\(self.reviewArray)")
                 self.reviewArray.append(review)
                 
             }
