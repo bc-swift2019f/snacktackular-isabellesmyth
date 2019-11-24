@@ -663,7 +663,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Delete Review">
-                                                        <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="deleteButtonPressed:" destination="1gG-4m-fvn" eventType="touchUpInside" id="5TK-pB-5vY"/>
@@ -685,12 +685,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="CKE-x7-Opd">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bec-go-Qt6">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="bec-go-Qt6">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="1gG-4m-fvn" id="XMW-ah-oPQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bSL-So-XQS">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="bSL-So-XQS">
                             <connections>
                                 <action selector="saveButtonPressed:" destination="1gG-4m-fvn" id="VNX-Ez-icF"/>
                             </connections>
@@ -701,12 +701,12 @@
                         <outlet property="addressLabel" destination="63Y-CN-Gw3" id="g9B-3A-W2G"/>
                         <outlet property="buttonBackgroundView" destination="uE0-Ih-ELi" id="wwz-nF-vlc"/>
                         <outlet property="cancelBarButton" destination="bec-go-Qt6" id="bnA-c3-nZz"/>
-                        <outlet property="deleteButton" destination="mjX-8o-bET" id="h3f-G3-kmu"/>
+                        <outlet property="deleteButton" destination="aeU-mO-lXi" id="vwo-ky-CnE"/>
                         <outlet property="nameLabel" destination="PAV-mK-X9U" id="dJF-MZ-LM7"/>
                         <outlet property="postedByLabel" destination="HiO-AT-ODe" id="mLu-YQ-oSK"/>
                         <outlet property="reviewDateLabel" destination="CP9-QZ-F1s" id="Q46-7J-43P"/>
-                        <outlet property="reviewTitle" destination="lPo-KA-yog" id="DT6-ac-b7K"/>
-                        <outlet property="reviewView" destination="r0D-jU-F4I" id="pbD-lM-b9m"/>
+                        <outlet property="reviewTextView" destination="r0D-jU-F4I" id="pbD-lM-b9m"/>
+                        <outlet property="reviewTitleField" destination="lPo-KA-yog" id="DT6-ac-b7K"/>
                         <outlet property="saveBarButton" destination="bSL-So-XQS" id="Sqw-GM-qFJ"/>
                         <outletCollection property="starButtonCollection" destination="SpZ-L1-IYs" collectionClass="NSMutableArray" id="F5y-on-7bs"/>
                         <outletCollection property="starButtonCollection" destination="Fgb-al-pCS" collectionClass="NSMutableArray" id="DK8-62-6RI"/>

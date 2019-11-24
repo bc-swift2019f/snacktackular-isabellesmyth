@@ -28,6 +28,7 @@ class SpotsListViewController: UIViewController {
         super.viewDidLoad()
         
         authUI = FUIAuth.defaultAuthUI()
+        print("****USER: \(Auth.auth().currentUser?.email)")
         // You need to adopt a FUIAuthDelegate protocol to receive callback
         authUI?.delegate = self
         tableView.delegate = self

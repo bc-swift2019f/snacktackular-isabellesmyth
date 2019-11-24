@@ -26,15 +26,14 @@ class Reviews {
             
         }
         print("LOADING DATA from collection")
-        let documentID = spot.documentID
-        print(documentID)
+       // let documentID = spot.documentID
         db.collection("spots").document(spot.documentID).collection("reviews").addSnapshotListener{ (QuerySnapshot, error) in
             guard error == nil else {
                 print("******ERROR: adding snapshot listener")
                 return completed()
             }
             self.reviewArray = []
-            let snapshot = QuerySnapshot!
+           // let snapshot = QuerySnapshot!
             print("QUERY \(QuerySnapshot!.documents)")
             for document in QuerySnapshot!.documents {
                 let review = Review(dictionary: document.data())
