@@ -15,7 +15,9 @@ class Photo {
     var postedBy: String
     var date: Date
     var documentUUID: String
-    
+    var dictionary: [String: Any] {
+        return ["description": description, "postedBy": postedBy, "date": date ]
+    }
     init(image: UIImage, description: String, postedBy: String, date: Date, documentUUID: String) {
         self.image = image
         self.description = description
@@ -28,4 +30,42 @@ class Photo {
         let postedBy = Auth.auth().currentUser?.email ?? "unknown user"
         self.init(image: UIImage(), description: "", postedBy: postedBy, date: Date(), documentUUID: "")
     }
+    func saveData(spot: Spot, completed: @escaping (Bool) -> ()) {
+         let db = Firestore.firestore()
+        let storage = Storage.storage()
+        //convert photo.image to datatype so that it can be saved by firebase storage
+        guard let photoData = self.image.jpegData(compressionQuality: 0.5) else {
+            print("*****ERROR: could not convert image to data format")
+            return completed(false)
+        }
+        documentUUID = UUID().uuidString //generate unique id to use for photo image's name
+        //create a ref to upload storage to spot.documentid's folder (bucket) with the name we created
+        let storageRef = storage.reference().child(spot.documentID).child(self.documentUUID)
+        let uploadTask = storageRef.putData(photoData)
+        uploadTask.observe(.success) { (snapshot) in
+                     //create dict
+            let dataToSave = self.dictionary
+            //if we save record we will ahve doc id
+            //this will either create a new documentUUId or update the existing doc that name
+                let ref = db.collection("spots").document(spot.documentID).collection("photos").document(self.documentUUID)
+                ref.setData(dataToSave) { (error) in
+                    if let error = error {
+                        print("***ERROR: updating document \(self.documentUUID) in spot \(spot.documentID)")
+                        completed(false)
+                    } else {
+                        print("Document updated with doc id")
+                        completed(true)
+                    }
+                    
+                }
+        }
+        uploadTask.observe(.failure) { (snapshot) in
+            if let error = snapshot.error {
+                print("***ERROR: upload task for file \(self.documentUUID) failed in spot \(spot.documentID)")
+            }
+            return completed(false)
+        }
+
+          
+     }
 }
