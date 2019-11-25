@@ -25,6 +25,7 @@ class SpotsTableViewCell: UITableViewCell {
         let distanceInMeters = currentLocation.distance(from: spot.location)
         let distanceString = "Distance: \((distanceInMeters * 0.00062137).roundTo(places: 2)) miles"
         distanceLabel.text = distanceString
+        ratingLabel.text = "\(spot.averageRating.roundTo(places: 1))"
         
         
     }

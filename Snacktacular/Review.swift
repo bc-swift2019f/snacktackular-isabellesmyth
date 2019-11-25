@@ -16,7 +16,7 @@ class Review {
     var date: Date
     var documentID: String
     var dictionary: [String: Any] {
-        return ["title": title, "text": text, "rating": rating, "reviewerUserID": reviewerUserID, "date": date, "documentID": documentID ]
+        return ["title": title, "text": text, "rating": rating, "reviewerUserID": reviewerUserID, "date": date]
     }
     init(title: String, text: String, rating: Int, reviewerUserID: String, date: Date, documentID: String) {
         self.title = title
@@ -39,7 +39,7 @@ class Review {
         let reviewerUserId = dictionary["reviewerUserID"] as! String? ?? "unknown user"
         let time = dictionary["date"] as! Timestamp
         let date = time.dateValue()
-        let documentID = dictionary["documentID"] as! String ?? ""
+        let documentID = dictionary["documentID"] as! String? ?? ""
         self.init(title: title, text: text, rating: rating, reviewerUserID: reviewerUserId, date: date, documentID: documentID)
     }
     
@@ -57,7 +57,9 @@ class Review {
                     completed(false)
                 } else {
                     print("Document updated with doc id")
+                    spot.updateAverageRating {
                     completed(true)
+                    }
                 }
                 
             }
@@ -69,10 +71,31 @@ class Review {
                     completed(false)
                 } else {
                     print("Document created with doc id")
+                   spot.updateAverageRating {
                     completed(true)
+                    }
                 }
                 
             }
         }
+    }
+    
+    
+    func deleteData(spot: Spot, completed: @escaping (Bool) -> ()){
+        let db = Firestore.firestore()
+        db.collection("spots").document(spot.documentID).collection("reviews").document(documentID).delete()
+            {error in
+                if let error = error {
+                    print("🥵🥵🥵🥵Error deleting review documentid \(self.documentID) \(error.localizedDescription)")
+                    completed(false)
+                }
+                else {
+                    spot.updateAverageRating {
+                        completed(true)
+                    }
+                    
+                }
+        }
+        
     }
 }
